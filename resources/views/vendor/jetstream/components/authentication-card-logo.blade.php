@@ -1,6 +1,6 @@
 <a href="/">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-    width="312.311px" height="310.148px" viewBox="0 0 312.311 310.148" enable-background="new 0 0 312.311 310.148"
+    width="160px" height="160px" viewBox="0 0 312.311 310.148"
     xml:space="preserve">
         <g>
             <path fill="#46166B" d="M151.844,9.261c0,0-50.817,98.635-102.827,135.703c25.705,29.291,47.825,68.151,120.161,80.107

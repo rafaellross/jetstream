@@ -1,18 +1,42 @@
 <div>
-
-
-
-    <div class="flex">
-        <div class="flex w-max mx-3 p-1 rounded my-5">
+    <div wire:loading>
+        @include('loading')
+    </div>
+    <div class="grid grid-flow-col grid-cols-2 grid-rows-1 gap-4">
+        <div class="flex w-max mx-3 p-1 rounded my-5 ml-8 col-start-1 col-end-3">
             <a href="{{URL::to('users/create')}}" class="border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500">Create</a>
+        </div>
+
+        <div class="pt-2 relative text-gray-600 mr-12 my-5 col-end-7 col-span-2">
+            <input wire:model="search"  class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              type="search" name="search" placeholder="Search">
+            <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+              <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"
+                width="512px" height="512px">
+                <path
+                  d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+              </svg>
+            </button>
+        </div>
+      </div>
+      <hr/>
+
+
+    <div class="grid grid-cols-10 gap-4" style="display: none;">
+        <div class="flex w-max mx-3 p-1 rounded my-5 col-start-1 col-end-3">
+            <a href="{{URL::to('users/create')}}" class="border-2 border-transparent bg-blue-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-blue-500 hover:bg-transparent hover:text-blue-500">Create</a>
+            <!-- Buttons Template
             <button class="border-2 border-transparent bg-red-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-red-500 hover:bg-transparent hover:text-red-500">DELETE</button>
             <button class="border-2 border-transparent bg-purple-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-purple-500 hover:bg-transparent hover:text-purple-500">secondary</button>
             <button class="border-2 border-transparent bg-green-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-green-500 hover:bg-transparent hover:text-green-500">success</button>
-
             <button class="border-2 border-transparent bg-yellow-500 ml-3 py-2 px-4 font-bold uppercase text-white rounded transition-all hover:border-yellow-500 hover:bg-transparent hover:text-yellow-500">warning</button>
+            -->
+
         </div>
 
-        <div class="flex justify-end pt-2 relative text-gray-600 mx-8 mx-8 my-5">
+        <div class="pt-2 relative text-gray-600 mr-2 my-5 col-end-7 col-span-2">
             <input wire:model="search"  class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
               type="search" name="search" placeholder="Search">
             <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
@@ -27,6 +51,7 @@
           </div>
     </div>
 
+<div></div>
     <div class="py-12">
         <div class="max-w-11xl mx-auto sm:px-6 lg:px-8">
             <!-- This example requires Tailwind CSS v2.0+ -->
@@ -37,31 +62,26 @@
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="py-3 px-6 text-center">
                                             Name
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="py-3 px-6 text-center">
                                             Status
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="py-3 px-6 text-center">
                                             Role
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="py-3 px-6 text-center">
                                             Date Created
                                         </th>
+                                        <th class="py-3 px-6 text-center">Actions</th>
 
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Edit</span>
-                                        </th>
+
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($users as $user)
-                                        <tr>
+                                        <tr class="hover:bg-gray-100 {{ $loop->even ? 'bg-gray-50' : ''}}">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
@@ -78,7 +98,7 @@
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap text-center">
                                                 @if ($user->status)
 
                                                     <button wire:click="$emit('toggleStatus', {{ $user->id }})"
@@ -93,16 +113,34 @@
 
                                                 @endif
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <td class="px-6 py-4 whitespace-nowrap text-center">
                                                 {{ !is_null($user->current_team_id) ? $user->currentTeam->name : null }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <td class="px-6 py-4 whitespace-nowrap text-center">
                                                 {{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}
                                             </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex item-center justify-center">
+                                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
                                             </td>
+
+
                                         </tr>
                                     @endforeach
 

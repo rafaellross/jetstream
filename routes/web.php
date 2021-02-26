@@ -27,5 +27,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     //Route::resource('users', App\Http\Controllers\UserController::class);
 
     Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users.index');
+    Route::get('/users/create', 'App\Http\Controllers\UserController@create')->name('users.create');
 
 });

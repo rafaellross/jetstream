@@ -59,10 +59,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public static function isValid() {
 
-    public function toogleStatus($id) {
-        $this->status = !$this->status;
-        $this->save();
     }
-
 }
