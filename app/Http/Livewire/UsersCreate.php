@@ -4,11 +4,13 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersCreate extends Component
 {
     public $name;
     public $email;
+    public $current_team_id;
     public $password;
     public $password_confirmation;
 
@@ -35,6 +37,7 @@ class UsersCreate extends Component
 
     public function saveUser() {
         $validatedUser = $this->validate();
+        $validatedUser['password'] = Hash::make($validatedUser['password']);
         User::create($validatedUser);
         return redirect()->to('/users');
 

@@ -25,14 +25,29 @@
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+            <!-- Page Heading -->            
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                @php
+                    $header = explode(".", \Request::route()->getName());
+
+                @endphp
+                
+                <div class="flex flex-row">
+                    <div class="box-border w-6 mr-1 {{\Request::route()->getName() == 'dashboard' ? 'hidden' : ''}}" >
+                        <a href="{{ url()->previous() }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current text-blue-300">
+                                <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
                     </div>
-                </header>
-            @endif
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight object-none object-center ">
+                        {{ Illuminate\Support\Str::upper(implode(" ", $header)) }}
+                    </h2>
+                </div>
+                    
+                </div>
+            </header>            
             <!-- Page Content -->
             <main>
                 {{ $slot }}

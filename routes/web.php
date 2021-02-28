@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EmployeesTable;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Livewire\UsersTable;
+use App\Http\Livewire\UsersCreate;
+use App\Http\Livewire\UsersEdit;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,9 +29,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
-    //Route::resource('users', App\Http\Controllers\UserController::class);
+    //Users Components
+    Route::get('/users', UsersTable::class)->name('users');    
+    Route::get('/users/create', UsersCreate::class)->name('create.user');
+    Route::get('/users/edit/{id}', UsersEdit::class)->name('edit.user');
 
-    Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users.index');
-    Route::get('/users/create', 'App\Http\Controllers\UserController@create')->name('users.create');
+    //Users Components
+    Route::get('/employees', EmployeesTable::class)->name('employees');    
+
 
 });
