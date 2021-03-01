@@ -56,7 +56,7 @@
                                 <thead class="bg-gray-400">
                                     <tr>
                                     <th scope="col" class="text-center">
-                                        <input wire:click="$toggle('selected')" type="checkbox" />
+                                        <input wire:model="selectPage" type="checkbox" />
                                         </th>
 
                                         <th scope="col" class="py-3 px-6 text-center">
@@ -89,7 +89,7 @@
                                     @foreach ($employees as $employee)
                                         <tr class=" hover:bg-gray-100 {{ $loop->even ? 'bg-gray-50' : ''}}">
                                             <td class="px-6 py-4 whitespace-nowrap text-left">
-                                                <input wire:model="selectedIds.{{$employee->id}}" type="checkbox" name="select" value="{{ $employee->id }}" checked>
+                                                <input wire:model="selecteds" type="checkbox" value="{{ $employee->id }}">
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-left">

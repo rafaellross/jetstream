@@ -23,23 +23,23 @@ class EmployeeFactory extends Factory
     {
         return [
             'UIDGuid' => $this->faker->uuid,
-            'LastName' => $this->faker->name, 
-            'FirstName' => $this->faker->name, 
-            'DisplayID' => $this->faker->bankAccountNumber, 
-            'IsActive' => $this->faker->boolean, 
-            'Street' => $this->faker->streetAddress, 
-            'City' => $this->faker->city, 
-            'State' => $this->faker->state, 
-            'PostCode' => $this->faker->postcode, 
-            'Country' => $this->faker->country, 
-            'Phone1' => $this->faker->phoneNumber, 
-            'Phone2' => $this->faker->phoneNumber, 
-            'Phone3' => $this->faker->phoneNumber, 
-            'Fax' => $this->faker->phoneNumber, 
+            'LastName' => $this->faker->firstName,
+            'FirstName' => $this->faker->name,
+            'DisplayID' => $this->faker->bankAccountNumber,
+            'IsActive' => $this->faker->boolean,
+            'Street' => $this->faker->streetAddress,
+            'City' => $this->faker->city,
+            'State' => $this->faker->state,
+            'PostCode' => $this->faker->postcode,
+            'Country' => $this->faker->country,
+            'Phone1' => $this->faker->phoneNumber,
+            'Phone2' => $this->faker->phoneNumber,
+            'Phone3' => $this->faker->phoneNumber,
+            'Fax' => $this->faker->phoneNumber,
             'Email' => $this->faker->unique()->safeEmail,
-            'ContactName' => $this->faker->name, 
-            'LastModified' => $this->faker->dateTime, 
-            
+            'ContactName' => $this->faker->lastName,
+            'LastModified' => $this->faker->dateTime,
+
         ];
     }
 }
